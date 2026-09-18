@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Un espace calme pour les personnes qui ont subi du harcèlement au travail ou ailleurs : comprendre, se protéger, trouver de l'aide.">
+<title>Refuge – parler du harcèlement, trouver de l'aide</title>
+<style>
+  :root{
+    --bg:#EDF1F0;
+    --panel:#E1E8E6;
+    --ink:#17302F;
+    --soft:#4A6260;
+    --line:#C5D1CE;
+    --pine:#1F4E4A;
+    --on-pine:#F4F8F7;
+    --lamp:#E6A93A;
+    --door:#B9791C;
+    --alert-bg:#F7EBD3;
+    --alert-ink:#4A3208;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0F1A1A;
+      --panel:#182626;
+      --ink:#E4EDEB;
+      --soft:#9DB3B0;
+      --line:#2C4240;
+      --pine:#7FC4BB;
+      --on-pine:#0F1A1A;
+      --lamp:#E6A93A;
+      --door:#A86A14;
+      --alert-bg:#2A2313;
+      --alert-ink:#F1DDB0;
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:5rem}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:1.125rem;line-height:1.7}
+  a{color:var(--pine);text-underline-offset:.2em}
+  a:hover{text-decoration-thickness:2px}
+  :focus-visible{outline:3px solid var(--lamp);outline-offset:3px;border-radius:2px}
+
+  /* En-tête + sortie rapide */
+  header.top{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+  .top-in{max-width:52rem;margin:0 auto;padding:.7rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .brand{font-size:1.35rem;font-weight:700;letter-spacing:.01em;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.6rem}
+  .brand i{display:block;width:.95rem;height:1.35rem;border-radius:1rem 1rem 0 0;background:var(--lamp);box-shadow:inset -.3rem 0 0 var(--door)}
+  .exit{font:600 .95rem var(--sans);background:var(--pine);color:var(--on-pine);border:0;border-radius:.4rem;padding:.65rem 1rem;cursor:pointer;min-height:2.75rem}
+  .exit:hover{filter:brightness(1.1)}
+
+  main,footer .in{max-width:52rem;margin:0 auto;padding:0 1.25rem}
+  .measure{max-width:38rem}
+
+  /* Accueil */
+  .hero{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;padding:3.5rem 0 2rem}
+  h1{font-size:clamp(2rem,6vw,3.3rem);line-height:1.12;margin:0 0 1.25rem;font-weight:700;letter-spacing:-.01em}
+  .lead{font-size:1.25rem;color:var(--soft);margin:0}
+  .door{width:8rem;height:12rem;border-radius:8rem 8rem 0 0;background:var(--lamp);box-shadow:inset -2.2rem 0 0 var(--door)}
+  @media (max-width:640px){.hero{grid-template-columns:1fr}.door{display:none}}
+
+  .urgent{background:var(--alert-bg);color:var(--alert-ink);border-left:6px solid var(--lamp);padding:1rem 1.25rem;margin:1rem 0 0;font-family:var(--sans);font-size:1rem;line-height:1.6}
+  .urgent strong{font-weight:700}
+  .urgent a{color:inherit;font-weight:700}
+
+  nav.jump{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font:500 1rem var(--sans);padding:1.75rem 0 .5rem}
+
+  section{padding:3.25rem 0 .5rem}
+  h2{font-size:clamp(1.55rem,4vw,2.05rem);line-height:1.2;margin:0 0 1rem}
+  h3{font-size:1.15rem;margin:0 0 .25rem}
+  p{margin:0 0 1rem}
+  .note{font:.95rem/1.6 var(--sans);color:var(--soft)}
+
+  /* Types de harcèlement */
+  details{border-top:1px solid var(--line)}
+  details:last-of-type{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer;font-weight:700;padding:1rem 0;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font:400 1.5rem/1 var(--sans);color:var(--soft)}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--soft);padding-right:2rem}
+
+  /* Section "diffus" */
+  .check{border-left:6px solid var(--pine);background:var(--panel);padding:1.1rem 1.25rem;margin:1.75rem 0}
+  .check h3{margin-bottom:.5rem}
+  .check p:last-child,.check ul:last-child{margin-bottom:0}
+  ul.plain{margin:0 0 1rem;padding-left:1.25rem}
+  ul.plain li{margin-bottom:.5rem}
+
+  /* Étapes (vraie séquence) */
+  ol.steps{list-style:none;counter-reset:s;margin:0;padding:0}
+  ol.steps li{counter-increment:s;position:relative;padding:0 0 1.5rem 3.2rem}
+  ol.steps li::before{content:counter(s);position:absolute;left:0;top:.1rem;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--pine);color:var(--on-pine);font:700 1rem/2.2rem var(--sans);text-align:center}
+  ol.steps p{margin:0;color:var(--soft)}
+
+  /* Numéros */
+  ul.tel{list-style:none;margin:0;padding:0}
+  ul.tel li{border-top:1px solid var(--line)}
+  ul.tel li:last-child{border-bottom:1px solid var(--line)}
+  ul.tel a{display:grid;grid-template-columns:8.5rem 1fr;gap:1rem;align-items:baseline;padding:1rem .25rem;text-decoration:none;color:var(--ink)}
+  ul.tel a:hover{background:var(--panel)}
+  ul.tel .n{font:700 1.7rem/1.2 var(--sans);color:var(--pine);font-variant-numeric:tabular-nums;white-space:nowrap}
+  ul.tel .n.small{font-size:1.15rem}
+  ul.tel .d{font-family:var(--sans);font-size:1rem;line-height:1.5}
+  ul.tel .d b{display:block;font-size:1.05rem}
+  ul.tel .d span{color:var(--soft)}
+  @media (max-width:520px){ul.tel a{grid-template-columns:1fr;gap:.15rem}}
+
+  /* Recours */
+  .recours{display:grid;gap:1.5rem}
+  .recours p{margin:0;color:var(--soft)}
+
+  .cta{display:inline-block;font:600 1rem var(--sans);background:var(--pine);color:var(--on-pine);padding:.85rem 1.25rem;border-radius:.4rem;text-decoration:none;margin:.25rem 0 1rem}
+  .cta:hover{filter:brightness(1.1)}
+
+  footer{margin-top:4rem;border-top:1px solid var(--line);padding:2rem 0 3rem;font:.95rem/1.6 var(--sans);color:var(--soft)}
+  footer p{margin:0 0 .75rem}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#"><i aria-hidden="true"></i>Refuge</a>
+    <button class="exit" id="exit" type="button" aria-label="Quitter rapidement ce site (touche Échap)">Quitter rapidement</button>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div>
+      <h1>Ce que vous avez vécu est réel. Vous pouvez en parler ici.</h1>
+      <p class="lead">Ce site s'adresse à toute personne qui a subi du harcèlement, au travail ou ailleurs. Personne ne vous demande de prouver quoi que ce soit pour être écouté·e.</p>
+    </div>
+    <div class="door" aria-hidden="true"></div>
+  </div>
+
+  <aside class="urgent" aria-label="Urgence">
+    <strong>En danger immédiat :</strong> <a href="tel:17">17</a> ou <a href="tel:112">112</a>.
+    <strong>Envie d'en finir, idées noires :</strong> <a href="tel:3114">3114</a>, gratuit, jour et nuit.
+  </aside>
+
+  <nav class="jump" aria-label="Sur cette page">
+    <a href="#reconnaitre">Reconnaître</a>
+    <a href="#diffus">Quand c'est diffus</a>
+    <a href="#agir">Que faire</a>
+    <a href="#numeros">Numéros utiles</a>
+    <a href="#recours">Recours</a>
+    <a href="#ecrire">Nous écrire</a>
+  </nav>
+
+  <section id="reconnaitre">
+    <h2>Reconnaître le harcèlement</h2>
+    <p class="measure">Le harcèlement, c'est un comportement répété qui abîme votre dignité, votre santé ou votre travail. Vous n'avez pas besoin de savoir le nommer avec précision pour avoir le droit d'être aidé·e.</p>
+    <div class="measure">
+      <details>
+        <summary>Harcèlement moral</summary>
+        <p>Critiques constantes, mise à l'écart, isolement, missions retirées ou impossibles, humiliations, surcharge organisée, propos dévalorisants. C'est la répétition et l'effet sur vous qui comptent, pas l'intention affichée.</p>
+      </details>
+      <details>
+        <summary>Harcèlement sexuel et sexiste</summary>
+        <p>Remarques, blagues ou gestes à connotation sexuelle, insistance, pression, chantage, messages non désirés. Un seul acte grave peut suffire à le caractériser.</p>
+      </details>
+      <details>
+        <summary>Harcèlement discriminatoire</summary>
+        <p>Comportements hostiles liés à l'origine, au genre, à l'orientation sexuelle, à l'âge, au handicap, à la santé, aux convictions, à une grossesse, à l'activité syndicale.</p>
+      </details>
+      <details>
+        <summary>Cyberharcèlement</summary>
+        <p>Messages, publications, groupes de discussion, images diffusées ou moqueries en ligne, y compris en dehors des horaires de travail.</p>
+      </details>
+      <details>
+        <summary>Harcèlement scolaire, de voisinage, conjugal ou autre</summary>
+        <p>Le harcèlement ne se limite pas à l'entreprise. Les numéros ci-dessous concernent aussi ces situations.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="diffus">
+    <h2>Quand rien n'est franchement grave, mais que ça pèse</h2>
+    <p class="measure">Le harcèlement ne prend pas toujours la forme d'une insulte ou d'un geste. Il peut se loger dans un ton, une petite phrase, une décision qui vous met en position de vous justifier. Pris un par un, ces faits semblent anodins. C'est leur accumulation qui compte, et le fait que vous vous sentiez atteint·e est déjà une information.</p>
+
+    <div class="measure">
+      <details>
+        <summary>Des formulations qui culpabilisent</summary>
+        <p>Un droit ou un aménagement présenté comme une faveur, une « convenance personnelle », ou comme un poids pour l'équipe.</p>
+      </details>
+      <details>
+        <summary>Des justifications en cascade</summary>
+        <p>On vous explique longuement pourquoi on vous accorde ce qui vous est dû, souvent pour se couvrir plus que pour vous informer.</p>
+      </details>
+      <details>
+        <summary>Un doute sur votre investissement</summary>
+        <p>Après une demande légitime (temps partiel, congé, horaires), on vous rappelle « l'esprit d'équipe » ou « l'engagement », comme si vous les aviez mis en cause.</p>
+      </details>
+      <details>
+        <summary>Une précarité entretenue</summary>
+        <p>Un accord « révisable à tout moment », sans délai de prévenance ni règle claire, qui vous laisse dans l'incertitude.</p>
+      </details>
+      <details>
+        <summary>Des changements décidés sans concertation</summary>
+        <p>Missions ou plannings modifiés sans demander si c'est possible, y compris quand vos contraintes sont connues.</p>
+      </details>
+      <details>
+        <summary>Un traitement différent</summary>
+        <p>Des règles qui varient d'une personne à l'autre, ou qui se durcissent après une demande de votre part.</p>
+      </details>
+    </div>
+
+    <div class="check measure">
+      <h3>Organisation maladroite ou harcèlement ?</h3>
+      <p>Une décision mal annoncée n'est pas forcément du harcèlement : l'employeur a le droit d'organiser le service. Posez-vous ces questions :</p>
+      <ul class="plain">
+        <li>Cela vise-t-il tout le monde, ou surtout vous ?</li>
+        <li>Est-ce que cela se répète dans le temps ?</li>
+        <li>Est-ce que cela touche votre santé, votre sommeil, votre travail ?</li>
+        <li>Pouvez-vous en parler sans être renvoyé·e au même ton ?</li>
+      </ul>
+      <p>Un changement collectif, même mal amené, relève d'abord de l'organisation. Il devient un indice quand il s'ajoute à d'autres faits et que vous en subissez seul·e les effets.</p>
+    </div>
+
+    <h3>Quand cela réveille quelque chose</h3>
+    <p class="measure">Si vous avez déjà vécu du harcèlement, un simple mail peut réveiller une colère ou une angoisse bien plus forte que son contenu. C'est normal, et cela n'enlève rien à la légitimité de ce que vous ressentez. Évitez de répondre à chaud : laissez passer une nuit, parlez-en à quelqu'un, puis répondez.</p>
+
+    <h3>Répondre par écrit sans vous mettre en faute</h3>
+    <ul class="plain measure">
+      <li>Restez factuel·le : le fait, la date, l'effet sur vous.</li>
+      <li>N'employez pas le mot « harcèlement » tant que vous n'êtes pas accompagné·e ; décrivez ce qui s'est passé.</li>
+      <li>Posez une question précise : quel délai, quelle règle, quel texte ?</li>
+      <li>Gardez le message reçu et votre réponse.</li>
+    </ul>
+  </section>
+
+  <section id="agir">
+    <h2>Que faire, à votre rythme</h2>
+    <p class="measure">Rien n'est obligatoire, et vous pouvez vous arrêter à n'importe quelle étape.</p>
+    <ol class="steps measure">
+      <li>
+        <h3>Vous protéger d'abord</h3>
+        <p>Si vous êtes en danger ou en grande détresse, appelez les numéros d'urgence en haut de page. Votre santé passe avant toute démarche.</p>
+      </li>
+      <li>
+        <h3>Garder des traces</h3>
+        <p>Notez les faits datés : ce qui s'est passé, où, qui était présent. Conservez messages, courriels, captures d'écran, arrêts ou certificats médicaux. Gardez des copies dans un endroit qui n'appartient pas à votre employeur, en vous renseignant avant d'emporter des documents confidentiels.</p>
+      </li>
+      <li>
+        <h3>En parler à une personne de confiance</h3>
+        <p>Un proche, un collègue, un représentant du personnel, un médecin. Sortir de l'isolement change beaucoup de choses.</p>
+      </li>
+      <li>
+        <h3>Vous faire accompagner</h3>
+        <p>Médecin du travail, association, syndicat, avocat ou Défenseur des droits : voir les rubriques ci-dessous.</p>
+      </li>
+      <li>
+        <h3>Choisir la suite</h3>
+        <p>Signalement interne, saisine de l'inspection du travail, plainte, action aux prud'hommes ou devant le tribunal administratif. Des délais existent : demandez conseil assez tôt.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section id="numeros">
+    <h2>Numéros utiles</h2>
+    <p class="measure">Ces services sont en France. Ils sont gratuits, et plusieurs sont anonymes. Touchez un numéro pour appeler depuis un téléphone.</p>
+    <ul class="tel">
+      <li><a href="tel:3114"><span class="n">3114</span><span class="d"><b>Prévention du suicide</b><span>Jour et nuit, écoute par des professionnels.</span></span></a></li>
+      <li><a href="tel:3919"><span class="n">3919</span><span class="d"><b>Violences faites aux femmes</b><span>Violences sexuelles, harcèlement sexuel, violences conjugales.</span></span></a></li>
+      <li><a href="tel:3018"><span class="n">3018</span><span class="d"><b>Cyberharcèlement</b><span>Écoute et aide pour faire supprimer des contenus.</span></span></a></li>
+      <li><a href="tel:116006"><span class="n">116 006</span><span class="d"><b>Aide aux victimes</b><span>Écoute, information sur vos droits, orientation.</span></span></a></li>
+      <li><a href="tel:0969390000"><span class="n small">09 69 39 00 00</span><span class="d"><b>Défenseur des droits</b><span>Discriminations et harcèlement discriminatoire.</span></span></a></li>
+      <li><a href="tel:119"><span class="n">119</span><span class="d"><b>Enfance en danger</b><span>Pour toute personne de moins de 18 ans, ou qui s'inquiète pour elle.</span></span></a></li>
+    </ul>
+  </section>
+
+  <section id="recours">
+    <h2>Recours et interlocuteurs</h2>
+    <div class="recours measure">
+      <div>
+        <h3>Médecin du travail</h3>
+        <p>Vous pouvez demander une visite à tout moment, et il est tenu au secret médical.</p>
+      </div>
+      <div>
+        <h3>Représentants du personnel, syndicat</h3>
+        <p>Ils peuvent vous écouter, vous accompagner en entretien et alerter l'employeur.</p>
+      </div>
+      <div>
+        <h3>Dispositif de signalement</h3>
+        <p>Dans la fonction publique, les employeurs doivent proposer un dispositif de signalement. Dans le privé, renseignez-vous sur le référent harcèlement.</p>
+      </div>
+      <div>
+        <h3>Inspection du travail</h3>
+        <p>Elle informe sur vos droits et peut intervenir auprès de l'entreprise.</p>
+      </div>
+      <div>
+        <h3>Défenseur des droits</h3>
+        <p>Saisine gratuite en cas de discrimination : <a href="https://www.defenseurdesdroits.fr" rel="noopener noreferrer">defenseurdesdroits.fr</a>.</p>
+      </div>
+      <div>
+        <h3>Associations spécialisées</h3>
+        <p>L'AVFT accompagne les victimes de violences sexistes et sexuelles au travail : <a href="https://www.avft.org" rel="noopener noreferrer">avft.org</a>.</p>
+      </div>
+      <div>
+        <h3>Plainte et justice</h3>
+        <p>Commissariat, gendarmerie, ou procureur par courrier. Un avocat ou une permanence d'accès au droit peut vous conseiller, parfois gratuitement.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="ecrire">
+    <h2>Nous écrire</h2>
+    <p class="measure">Vous pouvez nous écrire pour raconter, poser une question ou proposer un témoignage. Nous ne publions rien sans votre accord et nous retirons toujours les noms de personnes et d'entreprises.</p>
+    <!-- À REMPLACER par votre adresse dédiée -->
+    <a class="cta" href="mailto:contact@exemple.fr?subject=Refuge">Écrire un message</a>
+    <p class="note measure">Un courriel n'est pas anonyme. Si vous le souhaitez, utilisez une adresse créée pour l'occasion. Nous ne pouvons pas répondre aux urgences : utilisez les numéros en haut de page.</p>
+  </section>
+
+  <section id="securite">
+    <h2>Votre sécurité en ligne</h2>
+    <p class="measure">Ce site n'utilise ni cookies, ni outil de mesure d'audience, ni service externe. Le bouton « Quitter rapidement » vous envoie sur un autre site, mais il n'efface pas l'historique de votre navigateur. Pour ne laisser aucune trace, utilisez une fenêtre de navigation privée. Si vous craignez qu'une personne surveille votre téléphone ou votre ordinateur, préférez un appareil qui ne lui est pas accessible.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="in">
+    <p>Ce site propose des informations générales. Il ne remplace ni un avis juridique, ni un avis médical, ni un accompagnement psychologique.</p>
+    <!-- À COMPLÉTER : mentions légales (éditeur, hébergeur GitHub Pages) -->
+    <p>Éditeur : [nom ou structure] · Hébergeur : GitHub Pages</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    function quit(){ window.location.replace("https://www.meteofrance.com/"); }
+    document.getElementById("exit").addEventListener("click", quit);
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape") quit(); });
+  })();
+</script>
+</body>
+</html>
